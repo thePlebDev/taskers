@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 import TaskList from '../../Assets/Images/taksListPic.png'
 
@@ -48,7 +49,9 @@ const Footer =()=>{
         <Container>  
             <div>
                 <Text>Give us a try</Text>
-                <Button>Try Taskter today</Button>
+                <Link to="/main">
+                         <Button>Try Taskter today</Button>
+                    </Link> 
             </div>
             <Image src={TaskList} />
         </Container>

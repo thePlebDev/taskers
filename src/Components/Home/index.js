@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
+import {Link} from "react-router-dom";
 
 import LandingImage from '../../Assets/Images/LandingImage.png'
 import Info from '../Info'
@@ -88,8 +89,11 @@ const Home = ()=>{
             <SecondContainer>
                 <Title>Taskers</Title>
                     <Desc>Time management for busy people</Desc>
-                    <Desc2>Easy to use time Management software for people on the go</Desc2>                
-                <Button>Try Taskter today</Button>
+                    <Desc2>Easy to use time Management software for people on the go</Desc2>  
+                    <Link to="/main">
+                         <Button>Try Taskter today</Button>
+                    </Link>              
+                
             </SecondContainer>
            <ThirdContainer>
                <Image src={LandingImage}/>
