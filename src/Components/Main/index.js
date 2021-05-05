@@ -1,9 +1,11 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styled from 'styled-components'
 import MenuIcon from '@material-ui/icons/Menu';
 
 import Task from './Task'
 import Nav from '../Nav'
+import MainConditional from '../MainConditional'
+import MobileNav from '../NavMobile'
 
 const Container = styled.div`
     position:relative;
@@ -22,6 +24,7 @@ const IconContainer = styled.div`
         display:none;
       }
 `
+
 
 const SubContainer = styled.div`
     background-color:white;
@@ -50,18 +53,22 @@ const TaskContainer =styled.div`
 
 
 
-
-
 const Main = ()=>{
+    const [state,setState] = useState('tasks')
+    const [nav,setNav] = useState(false)
+
     return(
         <Container>
+            <MobileNav state={nav} setState={setState} setNav={setNav}/>
             <IconContainer>
-                <MenuIcon style={{fontSize:'50px',color:'#73C2FB'}}/>
+                <MenuIcon style={{fontSize:'50px',color:'#73C2FB'}} onClick={()=>setNav(!nav)}/>
             </IconContainer>
             <TaskContainer>
-                <Nav/>
+                <Nav setState={setState}/>
                 <SubContainer>
-                    <Task/>
+                    {
+                    MainConditional[state]
+                    }
                 </SubContainer>
             </TaskContainer>
         </Container>

@@ -36,14 +36,14 @@ const data = [
 
 
 
-const Nav = ()=>{
+const Nav = ({setState})=>{
 
     return(
         <Container>
             {
                 data.map((item,index)=>{
                     return(
-                        <NavItem title={item.name} icon={item.icon}/>
+                        <NavItem title={item.name} icon={item.icon} setState={setState}/>
                     )
                 })
             }

@@ -16,13 +16,14 @@ const Text = styled.h2`
 
 
 
-const NavItem =({title,icon})=>{
+const NavItem =({title,icon,setState})=>{
     const [clicked,setClicked] = useState(false)
     const node = useRef()
 
     const handleClick = e =>{
         if(node.current.contains(e.target)){
             setClicked(true)
+            setState(title)
         }else{
             setClicked(false)
         }
