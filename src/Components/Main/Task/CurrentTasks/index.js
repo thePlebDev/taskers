@@ -10,6 +10,7 @@ const Container = styled.div`
     margin:10px auto;
     height:77vh;
     border-radius:4px;
+    overflow-y: auto;
 `
 
 const Task = styled.div`
