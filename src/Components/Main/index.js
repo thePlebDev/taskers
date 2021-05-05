@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components'
 import MenuIcon from '@material-ui/icons/Menu';
 
+import Task from './Task'
+
 const Container = styled.div`
     position:relative;
     display:flex;
@@ -51,6 +53,12 @@ const NavContainer = styled.div`
       }
 
 `
+const TaskContainer =styled.div`
+      display:flex;
+      width:100%;
+      justify-content:center;
+`
+
 
 
 
@@ -62,11 +70,12 @@ const Main = ()=>{
             <IconContainer>
                 <MenuIcon style={{fontSize:'50px',color:'#73C2FB'}}/>
             </IconContainer>
-            
+            <TaskContainer>
             <NavContainer></NavContainer>
             <SubContainer>
-
+                <Task/>
             </SubContainer>
+            </TaskContainer>
         </Container>
     )
 }
