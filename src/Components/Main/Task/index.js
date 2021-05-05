@@ -40,9 +40,7 @@ const ItemContainer = styled.div`
 
 //MAKE THE FORM CONTROLLED  
 const Task = ()=>{
-
    const {handleChange,handleSubmit,state,tasks} = useTasks({title:""})
-
     return(
         <div>
             <Container >

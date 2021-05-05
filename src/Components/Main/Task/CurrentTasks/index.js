@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CancelIcon from '@material-ui/icons/Cancel';
 
+import {taskFilter} from '../../../../Utils'
+import useCurrentTasks from '../../../../Hooks/UseCurrentTasks'
+
 const Container = styled.div`
     border:2px solid #E8EEF1;
     width:90%;
@@ -49,19 +52,8 @@ const TaskText = styled.div`
 
 
 const CurrentTasks =({tasksArray})=>{
-    const [state,setState] = useState([])
 
-    const utilFunc = (name,status)=>{
-        setState(state.filter(item=> item.name !== name))
-    }
-
-    useEffect(()=>{
-        if(tasksArray.name){
-            setState([...state,tasksArray])
-
-        }
-        
-    },[tasksArray])
+    const {state,setState} = useCurrentTasks(tasksArray)
  
 
     return(
@@ -76,11 +68,11 @@ const CurrentTasks =({tasksArray})=>{
                             <IconContainer>
                                 <CheckCircleIcon 
                                 style={{color:"#4caf50",fontSize:'40px',cursor:"pointer",marginRight:'10px'}}
-                                onClick={()=>utilFunc(item.name,'success')}
+                                onClick={()=>taskFilter(item.name,setState,state,'success')}
                                 />
                                 <CancelIcon 
                                 style={{color:"#f44336",fontSize:'40px',cursor:"pointer"}}
-                                onClick={()=>utilFunc(item.name,"cancel")}/>
+                                onClick={()=>taskFilter(item.name,setState,state,"cancel")}/>
                             </IconContainer>
                          </Task>
                     )
