@@ -73,11 +73,6 @@ const ThirdContainer = styled.div`
     }
 `
 
-const Span = styled.span`
-    font-size:12px;
-    margin-left:30px;
-`
-
 
 
 

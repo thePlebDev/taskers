@@ -1,8 +1,8 @@
-import React,{useState,useRef,useEffect} from 'react';
+import React,{useState} from 'react';
 import styled from 'styled-components';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
-import TimerWidget from './TaskWidgetTimer'
+import CurrentTasks from './CurrentTasks'
 
 
 const Container = styled.div`
@@ -10,7 +10,7 @@ const Container = styled.div`
     width:90%;
     margin:10px auto;
     border-radius:4px;
-    padding:5px;
+    padding-bottom:10px;
     overflow-y: hidden;
     display:flex;
     flex-direction:column;
@@ -30,8 +30,8 @@ const Input = styled.input`
     border:none;
     border-bottom:1px solid #73C2FB;
     font-size:15px;
-    color: #73C2FB;
-    width:90%;
+    color: rgba(0,0,0,0.5);
+    width:80%;
 
 `
 
@@ -42,70 +42,64 @@ const ItemContainer = styled.div`
     top:0;
     width:100%
 `
-const ItemContainer2 = styled.div`
- 
-    position:absolute;
-    top:50px;
 
-`
 const Form = styled.form`
     width:90%;
 `
 
 const Button = styled.button`
-    padding:0.5rem 1rem;
-    font-size:1rem;
-    color:#73C2FB;
-    border:2px solid #73C2FB;
-    border-radius:4px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background-color:transparent;
+    border:none;
     outline:none;
-    cursor:pointer;
-    background:transparent;
-    width:110px;
-    text-transform:uppercase;
-    @media only screen and (min-width: 1140px) {
-        margin-left:10px;
-      }
+    position:absolute;
+    top:0;
+    right:0px;
 `
 
 
 
-
-
 //MAKE THE FORM CONTROLLED  
-//refactor to use custom hooks
 const Task = ()=>{
-    const [clicked,setClicked] = useState(false)
-    const node = useRef()
 
-    const handleClick = e =>{
-        if(!node.current.contains(e.target)){
-            setClicked(false)
-        }
+    const [tasks,setTasks] = useState({})
+    const [state,setState] = useState({title:''})
+
+    const handleChange=(e)=>{
+        const {value,name} = e.target;
+
+        setState({...state,[name]:value})
     }
 
-    useEffect(()=>{
-        document.addEventListener("mousedown",handleClick);
-
-        return()=>{
-            document.removeEventListener("mousedown",handleClick)
-        }
-    },[])
+    const handleSubmit =(e)=>{
+        e.preventDefault()
+        setTasks({...tasks,name:state.title})
+    }
 
     return(
-        <Container state={clicked} ref={node}>
-            <ItemContainer>
-                <Form>
-                    <label htmlFor="title" />
-                    <Input id="title" placeholder="Task Description"/>
-                </Form>
-                <AddCircleIcon style={{fontSize:'35px',color:'#73C2FB',marginTop:'5px',marginRight:'5px'}} onClick={()=>setClicked(true)}/>
-            </ItemContainer>
-            <ItemContainer2>
-                <Button type="submit">Submit</Button>
-            </ItemContainer2>
-
-        </Container>
+        <div>
+            <Container >
+                <ItemContainer>
+                    <Form onSubmit={(e)=>handleSubmit(e)}>
+                        <label htmlFor="title" />
+                        <Input id="title" placeholder="Task Description" 
+                        name="title" value={state.title}
+                        onChange={(e)=>{handleChange(e)}}
+                        />
+                    
+                    <Button type="submit">
+                        <AddCircleIcon 
+                            style={{fontSize:'35px',color:'#73C2FB',marginTop:'5px',marginRight:'5px',cursor:'pointer'}}
+                            type="submit"
+                            />
+                    </Button>
+                    </Form>
+                </ItemContainer>
+            </Container>
+            <CurrentTasks tasksArray={tasks}/>
+        </div>
     )
 }
 
