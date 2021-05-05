@@ -39,6 +39,11 @@ const Text = styled.div`
     text-transform:uppercase;
 
 `
+const TaskText = styled.div`
+    
+    padding-left:10px;
+`
+
 
 
 
@@ -56,6 +61,7 @@ const CurrentTasks =({tasksArray})=>{
         }
         
     },[tasksArray])
+ 
 
     return(
         <Container>
@@ -65,7 +71,7 @@ const CurrentTasks =({tasksArray})=>{
                 state.map((item,index)=>{
                     return(
                         <Task key={index}> 
-                            <div>{item.name}</div>
+                            <TaskText>{item.name}</TaskText>
                             <IconContainer>
                                 <CheckCircleIcon 
                                 style={{color:"#4caf50",fontSize:'40px',cursor:"pointer",marginRight:'10px'}}

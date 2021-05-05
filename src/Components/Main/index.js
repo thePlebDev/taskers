@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import MenuIcon from '@material-ui/icons/Menu';
 
 import Task from './Task'
+import Nav from '../Nav'
 
 const Container = styled.div`
     position:relative;
@@ -39,20 +40,7 @@ const SubContainer = styled.div`
 `
 
 
-const NavContainer = styled.div`
-    height:88vh;
-    border:2px solid #73C2FB;
-    margin-left:10px;
-    width:400px;
-    display:none;
-    background-color:white;
-    margin-top:50px;
-    border-radius:4px;
-    @media only screen and (min-width: 700px) {
-        display:block
-      }
 
-`
 const TaskContainer =styled.div`
       display:flex;
       width:100%;
@@ -71,10 +59,10 @@ const Main = ()=>{
                 <MenuIcon style={{fontSize:'50px',color:'#73C2FB'}}/>
             </IconContainer>
             <TaskContainer>
-            <NavContainer></NavContainer>
-            <SubContainer>
-                <Task/>
-            </SubContainer>
+                <Nav/>
+                <SubContainer>
+                    <Task/>
+                </SubContainer>
             </TaskContainer>
         </Container>
     )
