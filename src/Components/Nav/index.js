@@ -1,10 +1,13 @@
 import React from 'react';
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import EventIcon from '@material-ui/icons/Event';
-import NavItem from './NavItem'
+import NavItem from './NavItem';
+
+import {NavigationData} from '../../Data'
 
 
 const Container = styled.div`
@@ -22,29 +25,14 @@ const Container = styled.div`
 
 `
 
-const data = [
-    {
-        name:'tasks',
-        icon:<NotificationsActiveIcon style={{fontSize:"40px",color:"#73C2FB"}}/>
-    },
-    {
-        name:'calendar',
-        icon:<EventIcon style={{fontSize:"40px",color:"#73C2FB"}}/>
-    },
-
-]
-
-
-
-
 const Nav = ({setState})=>{
 
     return(
         <Container>
             {
-                data.map((item,index)=>{
+                NavigationData.map((item,index)=>{
                     return(
-                        <NavItem title={item.name} icon={item.icon} setState={setState}/>
+                        <NavItem key={index} title={item.name} icon={item.icon} setState={setState}/>
                     )
                 })
             }
@@ -52,6 +40,10 @@ const Nav = ({setState})=>{
 
         </Container>
     )
+}
+
+Nav.propTypes = {
+    setState: PropTypes.func
 }
 
 export default Nav

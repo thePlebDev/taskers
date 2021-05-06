@@ -14,7 +14,7 @@ import {useState,useEffect} from 'react'
  * @returns {Function} Returns a function used to change the clicked value
  */
 
-const useClickDetection =(node,setState,title)=>{
+const useClickDetection =(node,title,setState)=>{
     const [clicked,setClicked] = useState(false)
 
     useEffect(()=>{
@@ -22,7 +22,10 @@ const useClickDetection =(node,setState,title)=>{
         const handleClick = e =>{
             if(node.current.contains(e.target)){
                 setClicked(true)
-                setState(title)
+                if(setState){
+                    setState(title)
+                }
+                
             }else{
                 setClicked(false)
             }
@@ -33,7 +36,7 @@ const useClickDetection =(node,setState,title)=>{
             document.removeEventListener("mousedown",handleClick);
         }
 
-    },[setState,title])
+    },[setState,title,node])
 
 
     return{

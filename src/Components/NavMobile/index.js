@@ -1,9 +1,11 @@
 import React,{useRef,useEffect} from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
-import EventIcon from '@material-ui/icons/Event';
+
 import NavItem from '../Nav/NavItem'
+import useClickDetectionMobile from '../../Hooks/useClickDetectionMobileNav'
+import {NavigationData} from '../../Data'
 
 const Container = styled.div`
       position:absolute;
@@ -21,48 +23,28 @@ const Container = styled.div`
 
 `
 
-const data = [
-    {
-        name:'tasks',
-        icon:<NotificationsActiveIcon style={{fontSize:"40px",color:"#73C2FB"}}/>
-    },
-    {
-        name:'calendar',
-        icon:<EventIcon style={{fontSize:"40px",color:"#73C2FB"}}/>
-    },
-
-]
-
 const MobileNav = ({state,setState,setNav})=>{
     const node = useRef()
 
-    const handleClick =(e)=>{
-        if(node.current.contains(e.target)){
-
-        }else{
-            setNav(false)
-        }
-    }
-
-    useEffect(()=>{
-        document.addEventListener("mousedown",handleClick);
-
-        return ()=>{
-                document.removeEventListener("mousedown",handleClick);
-        }
-    })
+    useClickDetectionMobile(node,setNav)
 
     return(
         <Container state={state} ref={node}>
             {
-                data.map((item,index)=>{
+                NavigationData.map((item,index)=>{
                     return(
-                        <NavItem title={item.name} icon={item.icon} setState={setState}/>
+                        <NavItem key={index} title={item.name} icon={item.icon} setState={setState}/>
                     )
                 })
             }
         </Container>
     )
+}
+
+MobileNav.propTypes = {
+    setState: PropTypes.func,
+    state: PropTypes.bool,
+    setNav: PropTypes.func,
 }
 
 export default MobileNav

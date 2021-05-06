@@ -1,5 +1,6 @@
-import React,{useState,useRef,useEffect} from 'react';
+import React,{useRef} from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import useClickDetection from '../../../Hooks/UseClickDetection'
 
@@ -21,7 +22,7 @@ const Text = styled.h2`
 const NavItem =({title,icon,setState})=>{
     const node = useRef()
 
-    const {clicked,setClicked} = useClickDetection(node,setState,title)
+    const {clicked,setClicked} = useClickDetection(node,title,setState)
 
     return(
         <ItemContainer state={clicked} onClick={()=>setClicked(true)} ref={node}>
@@ -29,6 +30,12 @@ const NavItem =({title,icon,setState})=>{
             {icon}
         </ItemContainer>
     )
+}
+
+NavItem.propTypes = {
+    setState: PropTypes.func,
+    title: PropTypes.string,
+    icon: PropTypes.any,
 }
 
 export default NavItem;
