@@ -1,10 +1,6 @@
 import React from 'react';
-import styled from 'styled-components'
-import PropTypes from 'prop-types'
-
-
-import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
-import EventIcon from '@material-ui/icons/Event';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import NavItem from './NavItem';
 
 import {NavigationData} from '../../Data'

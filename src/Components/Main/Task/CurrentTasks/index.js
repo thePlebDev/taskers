@@ -7,19 +7,19 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import {taskFilter} from '../../../../Utils'
 import useCurrentTasks from '../../../../Hooks/UseCurrentTasks'
 
-const Container = styled.div`
+const Container = styled.ul`
     border:2px solid #E8EEF1;
     width:90%;
     margin:10px auto;
     height:77vh;
     border-radius:4px;
     overflow-y: auto;
+    padding:0;
 `
 
-const Task = styled.div`
+const Task = styled.li`
     border-bottom:2px solid #E8EEF1;
     width:100%;
-    
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -32,7 +32,7 @@ const IconContainer= styled.div`
       width:40%;
       display:flex;
       justify-content:flex-end;
-      padding-right:5px;
+      padding-right:10px;
 `
 
 const Text = styled.div`
@@ -41,11 +41,16 @@ const Text = styled.div`
     text-align:center;
     font-size:40px;
     text-transform:uppercase;
+    
 
 `
 const TaskText = styled.div`
-    
-    padding-left:10px;
+    word-wrap: break-word;
+    padding:5px;
+    width:55%;
+    @media only screen and (min-width: 800px) {
+        width:70%;
+      }
 `
 
 

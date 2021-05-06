@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const Input = styled.input`
     margin-top:10px;
@@ -25,6 +26,13 @@ const TextInput =({name,value,handleChange,placeholder})=>{
         onChange={(e)=>{handleChange(e)}}/>
         </>
     )
+}
+
+TextInput.propTypes = {
+    name: PropTypes.string,
+    value:PropTypes.string,
+    handleChange:PropTypes.func,
+    placeholder:PropTypes.string
 }
 
 export default TextInput
