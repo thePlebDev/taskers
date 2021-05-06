@@ -2,7 +2,6 @@ import React,{useState} from 'react';
 import styled from 'styled-components'
 import MenuIcon from '@material-ui/icons/Menu';
 
-import Task from './Task'
 import Nav from '../Nav'
 import MainConditional from '../MainConditional'
 import MobileNav from '../NavMobile'

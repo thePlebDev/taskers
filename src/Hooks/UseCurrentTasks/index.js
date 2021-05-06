@@ -22,7 +22,7 @@ const useCurrentTasks =(tasksArray)=>{
 
         }
         
-    },[tasksArray])
+    },[tasksArray,state])
 
     return{
         state,

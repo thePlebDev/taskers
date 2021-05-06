@@ -1,4 +1,4 @@
-import {useState,useEffect} from 'react';
+import {useState} from 'react';
 
 /**
  * used as a custom hook to handle the controlled value of the inputs and to create new tasks

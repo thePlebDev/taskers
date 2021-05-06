@@ -12,7 +12,12 @@
  */
 
 const utilFunc = (name,setState,state,status)=>{
-    setState(state.filter(item=> item.name !== name))
+    try{
+        setState(state.filter(item=> item.name !== name))
+    }catch(error){
+        throw new TypeError(error.message)
+    }
+    
 }
 
 

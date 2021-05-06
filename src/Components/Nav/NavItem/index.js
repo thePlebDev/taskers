@@ -1,6 +1,8 @@
 import React,{useState,useRef,useEffect} from 'react';
 import styled from 'styled-components';
 
+import useClickDetection from '../../../Hooks/UseClickDetection'
+
 const ItemContainer = styled.div`
       display:flex;
       justify-content:space-around;
@@ -17,28 +19,9 @@ const Text = styled.h2`
 
 
 const NavItem =({title,icon,setState})=>{
-    const [clicked,setClicked] = useState(false)
     const node = useRef()
 
-    const handleClick = e =>{
-        if(node.current.contains(e.target)){
-            setClicked(true)
-            setState(title)
-        }else{
-            setClicked(false)
-        }
-    }
-
-    useEffect(()=>{
-        document.addEventListener("mousedown",handleClick)
-
-        return()=>{
-            document.removeEventListener("mousedown",handleClick);
-        }
-
-    },[])
-
-
+    const {clicked,setClicked} = useClickDetection(node,setState,title)
 
     return(
         <ItemContainer state={clicked} onClick={()=>setClicked(true)} ref={node}>
