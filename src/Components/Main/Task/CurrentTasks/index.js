@@ -69,15 +69,17 @@ const CurrentTasks =({tasksArray})=>{
                 state.map((item,index)=>{
                     return(
                         <Task key={index}> 
-                            <TaskText>{item.name}</TaskText>
+                            <TaskText data-testid="testTitle">{item.name}</TaskText>
                             <IconContainer>
                                 <CheckCircleIcon 
                                 style={{color:"#4caf50",fontSize:'40px',cursor:"pointer",marginRight:'10px'}}
-                                onClick={()=>taskFilter(item.name,setState,state,'success')}
+                                onClick={()=>taskFilter(item.name,setState,state,'success') }
+                                data-testid="success"
                                 />
                                 <CancelIcon 
                                 style={{color:"#f44336",fontSize:'40px',cursor:"pointer"}}
-                                onClick={()=>taskFilter(item.name,setState,state,"cancel")}/>
+                                onClick={()=>taskFilter(item.name,setState,state,"cancel")} 
+                                data-testid="cancel"/>
                             </IconContainer>
                          </Task>
                     )

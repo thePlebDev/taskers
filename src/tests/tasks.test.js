@@ -1,10 +1,12 @@
 //THIS IS GOING TO TEST THE TASKS
 import React from 'react';
 import {render,screen} from "@testing-library/react"
-import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
+import '@testing-library/jest-dom'
 
 import Tasks from '../Components/Main/Task'
+import renderSetUp from './utils/taskCreationUtil'
+
 
 
 
@@ -18,14 +20,28 @@ describe("Testing to make sure that Tasks works normally",()=>{
     })
 
     test("it should add to the task",()=>{
-        render(<Tasks />)
-        // we need to grab the input and then add a task then submit it and then we need to 
-        userEvent.type(screen.getByRole("textbox"),"hello world!")
-        expect(screen.getByRole('textbox')).toHaveValue('hello world!')
-        // now we have to fire the submit button
-        // expect(screen.getByRole("button")).toBeInTheDocument()
-        userEvent.click(screen.getByRole("button"))
-        expect(screen.getByText())
+       
+        renderSetUp()
+
+        //so screen is pre bound to the document that render spits out.
+        //screen is definetly doing some movie time magic behind the scenes 
+        expect(screen.getByTestId("testTitle")).toBeInTheDocument()
+
+
+    })
+
+    test("it should test the sucess deletion of tasks",()=>{
+        renderSetUp()
+    
+        userEvent.click(screen.getByTestId("success"))
+        expect(screen.getByText("you have no tasks")).toBeTruthy()
+    })
+
+    test("it should test the cancel deletion of tasks",()=>{
+        renderSetUp()
+    
+        userEvent.click(screen.getByTestId("cancel"))
+        expect(screen.getByText("you have no tasks")).toBeTruthy()
     })
 
 })
