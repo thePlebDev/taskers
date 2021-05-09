@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import {motion} from 'framer-motion';
 
 import CurrentTasks from './CurrentTasks'
-import TextInput from '../../Inputs/TextInput'
+import TextInput from '../../Inputs/TextInput';
+
 
 import useTasks from '../../../Hooks/UseTasksAddition'
 import {AddTaskButton} from '../../Buttons'
@@ -20,7 +22,7 @@ const Container = styled.div`
     display:flex;
     flex-direction:column;
     transition:all 0.35s;
-    height:${({state})=>state? '160px': '40px'};
+    height:60px;
     justify-content:space-around;
     position:relative;
     overflow-x:hidden;
@@ -34,7 +36,10 @@ const ItemContainer = styled.div`
     top:0;
     width:100%
 `
-
+const variants = {
+    hidden:{opacity:0},
+    visible:{opacity:1},
+}
 
 
 
@@ -42,7 +47,7 @@ const ItemContainer = styled.div`
 const Task = ()=>{
    const {handleChange,handleSubmit,state,tasks} = useTasks({title:""})
     return(
-        <div>
+        <motion.div initial="hidden" animate="visible" variants={variants}>
             <Container >
                 <ItemContainer>
                     <Form handleSubmit={handleSubmit}>
@@ -52,7 +57,7 @@ const Task = ()=>{
                 </ItemContainer>
             </Container>
             <CurrentTasks tasksArray={tasks}/>
-        </div>
+        </motion.div>
     )
 }
 

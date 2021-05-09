@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {motion} from 'framer-motion';
 
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import CancelIcon from '@material-ui/icons/Cancel';
@@ -17,7 +18,7 @@ const Container = styled.ul`
     padding:0;
 `
 
-const Task = styled.li`
+const Task = styled(motion.li)`
     border-bottom:2px solid #E8EEF1;
     width:100%;
     display:flex;
@@ -53,6 +54,10 @@ const TaskText = styled.div`
       }
 `
 
+const variants = {
+    hidden:{opacity:0,transform:"translateY(-5px)"},
+    visible:{opacity:1,transform:"translateY(0px)"},
+}
 
 
 
@@ -68,7 +73,7 @@ const CurrentTasks =({tasksArray})=>{
                     ?
                 state.map((item,index)=>{
                     return(
-                        <Task key={index}> 
+                        <Task key={index} initial="hidden" animate="visible" variants={variants} > 
                             <TaskText data-testid="testTitle">{item.name}</TaskText>
                             <IconContainer>
                                 <CheckCircleIcon 

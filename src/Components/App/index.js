@@ -7,11 +7,12 @@ import Main from '../Main'
 
 const App =()=>{
     return(
-        <Switch>
-            <Route path='/' component={Home} exact />
-            <Route path='/main' component={Main} exact />
-        </Switch>
-    )
+            <Switch>
+                <Route path='/' component={Home} exact />
+                <Route path='/main' component={Main} exact />
+            </Switch>
+    )   
+        
 }
 
 export default App
