@@ -4,7 +4,7 @@ import EventIcon from '@material-ui/icons/Event';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 
 const iconStyles ={
-    "font-size":"40px",
+    "fontSize":"40px",
     "color":"#73C2FB"
 }
 

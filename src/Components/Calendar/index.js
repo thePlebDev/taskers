@@ -8,7 +8,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 import './index.css'
-import CalendarDays from './CalendarDays'
+//import CalendarDays from './CalendarDays'
 import RenderCells from './CalendarCells'
 
 
@@ -32,20 +32,20 @@ const variants = {
 
 const Calendar =()=>{
     const [currentMonth,setCurrentMonth] = useState(new Date())
-    const [currentDate,setCurrentDate] = useState(new Date())
+    //const [currentDate,setCurrentDate] = useState(new Date())
 
   const dateFormat = "MMMM yyyy";
 
   const prevMonth = () => {
-    setCurrentMonth({
-      currentMonth: subMonths(currentMonth, 1)
-    });
+    setCurrentMonth(
+        subMonths(currentMonth, 1) //subtract the specified number of months from the given date
+    );
   };
     
   const nextMonth = () => {
-    setCurrentMonth({
-      currentMonth: addMonths(currentMonth, 1)
-    });
+    setCurrentMonth(
+      addMonths(currentMonth, 1) // add specified number of months to the given date
+    );
   };
 
     return (
@@ -57,7 +57,7 @@ const Calendar =()=>{
             </div>
             </div>
             <div className="col col-center">
-            <span>{format(currentMonth, dateFormat)}</span>
+            <span>{format(currentMonth, dateFormat)} </span>
             </div>
             <div className="col col-end" onClick={()=>nextMonth()}>
             <div className="icon">
@@ -65,11 +65,10 @@ const Calendar =()=>{
             </div>
             </div>
       </div>
-      <CalendarDays currentMonth={currentMonth}/>
-      <RenderCells currentMonth={currentMonth} />
+      <RenderCells currentMonth={currentMonth}/>
     </Container>
       
     );
     }
-
+//RangeError: Invalid time value  
 export default Calendar
