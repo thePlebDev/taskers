@@ -1,5 +1,6 @@
 
 import React,{useState} from 'react';
+import styled from 'styled-components'
 import startOfMonth from 'date-fns/startOfMonth'
 import endOfMonth from 'date-fns/endOfMonth'
 import startOfWeek from 'date-fns/startOfWeek'
@@ -10,12 +11,25 @@ import addDays from 'date-fns/addDays'
 
 import format from 'date-fns/format'
 import CalendarCellsDays from '../CalendarCellsDays'
+import parseISO from 'date-fns/parseISO'
+import parse from 'date-fns/parse'
 
+import CloseIcon from '@material-ui/icons/Close';
+
+const Modal = styled.div`
+    height:75.2vh;
+    width:100%;
+    position:absolute;
+    background-color:rgba(0,0,0,0.8);
+    z-index:99999999999999;
+    display:${({state})=>state?"block":"none"};
+`
 
 
 const RenderCells =({currentMonth})=> {
     //const { currentMonth, selectedDate } = this.state;
     const [startingDay,setStartingDay] = useState({selectedDate:''})
+    const [show,setShow] = useState(true)
 
     const onDateClick = day => {
         setStartingDay({
@@ -53,7 +67,9 @@ const RenderCells =({currentMonth})=> {
       days = [];
     }
     
-    return <div className="body">{rows}</div>;
+    return <div className="body" style={{position:'relative'}}>
+      {rows}
+      </div>;
   }
 
   export default RenderCells

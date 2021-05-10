@@ -19,12 +19,12 @@ const Input = styled.input`
 const TextInput =({name,value,handleChange,placeholder})=>{
 
     return(
-        <>
-        <label htmlFor={name}/>
-        <Input id={name}placeholder={placeholder} 
-        name={name}value={value} 
-        onChange={(e)=>{handleChange(e)}}/>
-        </>
+        <div>
+            <label htmlFor={name}/>
+            <Input id={name}placeholder={placeholder} 
+            name={name}value={value} 
+            onChange={(e)=>{handleChange(e)}}/>
+        </div>
     )
 }
 
